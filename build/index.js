@@ -122,12 +122,17 @@ wp.blocks.registerBlockType("ourplugin/featured-professor", {
   description: "Include a short description and link to a professor of your choice",
   icon: "welcome-learn-more",
   category: "common",
+  attributes: {
+    profId: {
+      type: "string"
+    }
+  },
   edit: EditComponent,
   save: function () {
     return null;
   }
 });
-function EditComponent() {
+function EditComponent(props) {
   const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.useBlockProps)({
     className: "featured-professor-wrapper"
   });
@@ -135,7 +140,27 @@ function EditComponent() {
     ...blockProps,
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
       className: "professor-select-container",
-      children: "We will have a select dropdown form element here."
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("select", {
+        onChange: e => props.setAttributes({
+          profId: e.target.value
+        }),
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("option", {
+          value: "",
+          children: "Select a professor"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("option", {
+          value: "1",
+          selected: props.attributes.profId === '1',
+          children: "1"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("option", {
+          value: "2",
+          selected: props.attributes.profId === '2',
+          children: "2"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("option", {
+          value: "3",
+          selected: props.attributes.profId === '3',
+          children: "3"
+        })]
+      })
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
       children: "The HTML preview of the selected professor will appear here."
     })]
