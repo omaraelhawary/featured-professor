@@ -4,5 +4,6 @@
     "name": "ourplugin/featured-professor",
     "title": "Professor Callout",
     "editorScript": "file:./build/index.js",
-    "editorStyle": "file:./build/index.css"
+    "editorStyle": "file:./build/index.css",
+    "style": "file:./build/index.css"
 }

@@ -10,6 +10,8 @@
 
 if( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
+require_once plugin_dir_path( __FILE__ ). 'inc/generateProfHTML.php';
+
 class FeaturedProfessor {
   function __construct() {
     add_action('init', [$this, 'onInit']);
@@ -22,7 +24,11 @@ class FeaturedProfessor {
   }
 
   function renderCallback($attributes) {
-    return '<p>We will replace this content soon.</p>';
+    if(isset($attributes['profId'])) {
+      return generateProfHTML($attributes['profId']);
+    } else {
+        return NULL;
+    }
   }
 
 }
