@@ -1,3 +1,4 @@
+import { useBlockProps } from "@wordpress/block-editor"
 import "./index.scss"
 
 wp.blocks.registerBlockType("ourplugin/featured-professor", {
@@ -12,8 +13,12 @@ wp.blocks.registerBlockType("ourplugin/featured-professor", {
 })
 
 function EditComponent() {
+  const blockProps = useBlockProps({
+    className: "featured-professor-wrapper",
+  })
+
   return (
-    <div className="featured-professor-wrapper">
+    <div {...blockProps}>
       <div className="professor-select-container">
         We will have a select dropdown form element here.
       </div>

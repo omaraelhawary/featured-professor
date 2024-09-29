@@ -1,11 +1,11 @@
 <?php
 
 /*
-  Plugin Name: Featured Professor Block
+  Plugin Name: Featured Professor Block Type
+  Description: This plugin to show featured professor in Posts.
   Version: 1.0
   Author: Omar ElHawary
-  Author URI: https://www.linkedin.com/in/omaraelhawary/
-  Description:    Add featured professors to your posts
+  Author URI: https://linkedIn.com/in/omar-elhawary
 */
 
 if( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
@@ -16,7 +16,7 @@ class FeaturedProfessor {
   }
 
   function onInit() {
-    register_block_type('ourplugin/featured-professor', array(
+    register_block_type(__DIR__, array(
       'render_callback' => [$this, 'renderCallback'],
     ));
   }
