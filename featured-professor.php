@@ -1,10 +1,11 @@
 <?php
 
 /*
-  Plugin Name: Featured Professor Block Type
+  Plugin Name: Featured Professor Block
   Version: 1.0
   Author: Omar ElHawary
   Author URI: https://www.linkedin.com/in/omaraelhawary/
+  Description:    Add featured professors to your posts
 */
 
 if( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
@@ -15,13 +16,8 @@ class FeaturedProfessor {
   }
 
   function onInit() {
-    wp_register_script('featuredProfessorScript', plugin_dir_url(__FILE__) . 'build/index.js', array('wp-blocks', 'wp-i18n', 'wp-editor'));
-    wp_register_style('featuredProfessorStyle', plugin_dir_url(__FILE__) . 'build/index.css');
-
     register_block_type('ourplugin/featured-professor', array(
       'render_callback' => [$this, 'renderCallback'],
-      'editor_script' => 'featuredProfessorScript',
-      'editor_style' => 'featuredProfessorStyle'
     ));
   }
 
