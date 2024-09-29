@@ -1,0 +1,1 @@
+This plugin to show featured professor in Posts.
