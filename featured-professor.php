@@ -30,6 +30,11 @@ class FeaturedProfessor {
   }
 
   function onInit() {
+    register_meta('post', 'featured_professor', array(
+      'show_in_rest' => true,
+      'type' => 'number',
+      'single' => false
+    ));
     register_block_type(__DIR__, array(
       'render_callback' => [$this, 'renderCallback'],
     ));
