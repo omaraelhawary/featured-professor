@@ -1,5 +1,11 @@
 <?php
 
+/**
+ * Generates HTML for a list of posts that feature a specific professor.
+ *
+ * @param int $id The ID of the professor.
+ * @return string The HTML for the list of posts.
+ */
 function relatdPostsHTML($id){
     $postsAboutThisProf = new WP_Query(array(
         'posts_per_page' => -1,

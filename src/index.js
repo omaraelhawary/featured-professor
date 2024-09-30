@@ -20,6 +20,12 @@ wp.blocks.registerBlockType("ourplugin/featured-professor", {
   }
 })
 
+/**
+ * A React component for editing a featured professor block.
+ *
+ * @param {object} props - The component's props, including the block's attributes.
+ * @return {JSX.Element} The JSX element representing the edit component.
+ */
 function EditComponent(props) {
   const blockProps = useBlockProps({
     className: "featured-professor-wrapper",
@@ -47,6 +53,14 @@ function EditComponent(props) {
     }
   }, [])
 
+  /**
+   * Updates the post meta with the featured professor IDs.
+   *
+   * This function retrieves the IDs of all featured professors in the current post,
+   * removes duplicates, and updates the post meta with the resulting array of IDs.
+   *
+   * @return {void}
+   */
   function updateTheMeta() {
     const profsForMeta = wp.data.select("core/editor").getBlocks()
       .filter(x => x.name == "ourplugin/featured-professor")

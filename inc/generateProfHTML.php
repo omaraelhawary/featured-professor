@@ -1,5 +1,11 @@
 <?php
 
+/**
+ * Generates HTML for a professor's profile based on the provided ID.
+ *
+ * @param int $id The ID of the professor.
+ * @return string The HTML for the professor's profile.
+ */
 function generateProfHTML($id){
     if(!$id){ 
         return '';
