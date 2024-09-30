@@ -28,15 +28,17 @@ function EditComponent(props) {
   const [thePreview, setThePrview] = useState("")
 
   useEffect(() => {
-    updateTheMeta();
-    async function go() {
-      const response = await apiFetch({
-        path: `/featuredProfessor/v1/getHTML?profId=${props.attributes.profId}`,
-        method: "GET"
-      })
-      setThePrview(response)
+    if (props.attributes.profId) {
+      updateTheMeta();
+      async function go() {
+        const response = await apiFetch({
+          path: `/featuredProfessor/v1/getHTML?profId=${props.attributes.profId}`,
+          method: "GET"
+        })
+        setThePrview(response)
+      }
+      go()
     }
-    go()
   }, [props.attributes.profId])
 
   useEffect(() => {

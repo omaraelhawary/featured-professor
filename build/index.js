@@ -177,15 +177,17 @@ function EditComponent(props) {
   });
   const [thePreview, setThePrview] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)("");
   (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(() => {
-    updateTheMeta();
-    async function go() {
-      const response = await _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_4___default()({
-        path: `/featuredProfessor/v1/getHTML?profId=${props.attributes.profId}`,
-        method: "GET"
-      });
-      setThePrview(response);
+    if (props.attributes.profId) {
+      updateTheMeta();
+      async function go() {
+        const response = await _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_4___default()({
+          path: `/featuredProfessor/v1/getHTML?profId=${props.attributes.profId}`,
+          method: "GET"
+        });
+        setThePrview(response);
+      }
+      go();
     }
-    go();
   }, [props.attributes.profId]);
   (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(() => {
     return () => {
