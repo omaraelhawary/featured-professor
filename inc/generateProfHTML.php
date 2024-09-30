@@ -1,6 +1,10 @@
 <?php
 
 function generateProfHTML($id){
+    if(!$id){ 
+        return '';
+      }
+  
     $profPost = new WP_Query(array(
         'post_type' => 'professor',
         'p' => $id
