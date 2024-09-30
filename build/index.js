@@ -187,8 +187,15 @@ function EditComponent(props) {
     }
     go();
   }, [props.attributes.profId]);
+  (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(() => {
+    return () => {
+      updateTheMeta();
+    };
+  }, []);
   function updateTheMeta() {
-    const profsForMeta = wp.data.select("core/editor").getBlocks().filter(blocks => blocks.name == "ourplugin/featured-professor").map(block => block.attributes.profId).filter((x, index, arr) => arr.indexOf(x) == index);
+    const profsForMeta = wp.data.select("core/editor").getBlocks().filter(x => x.name == "ourplugin/featured-professor").map(x => x.attributes.profId).filter((x, index, arr) => {
+      return arr.indexOf(x) == index;
+    });
     console.log(profsForMeta);
     wp.data.dispatch("core/editor").editPost({
       meta: {
