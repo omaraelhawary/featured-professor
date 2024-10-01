@@ -6,6 +6,8 @@
   Version: 1.0
   Author: Omar ElHawary
   Author URI: https://linkedIn.com/in/omar-elhawary
+  Text Domain: featured-professor
+  Domain Path: /languages
 */
 
 if( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
@@ -66,16 +68,27 @@ class FeaturedProfessor {
    * @return void
    */
   function onInit() {
+    wp_register_script(
+      'featured-professor',
+      plugins_url( 'build/index.js', __FILE__ ),
+      array( 'wp-i18n' ),  // Ensure wp-i18n is a dependency for translation functions
+      filemtime( plugin_dir_path( __FILE__ ) . 'build/index.js' ),
+      true
+  );
+    load_plugin_textdomain( 'featured-professor', false, dirname(plugin_basename( __FILE__ )) . '/languages');
+
     register_meta('post', 'featured_professor', array(
       'show_in_rest' => true,
       'type' => 'number',
       'single' => false
     ));
+
+    wp_set_script_translations( 'featuredProffessor', 'featured-professor', plugin_dir_path( __FILE__ ). '/languages' );
+
     register_block_type(__DIR__, array(
       'render_callback' => [$this, 'renderCallback'],
     ));
   }
-
   /**
    * Renders the HTML for a featured professor based on the provided attributes.
    *

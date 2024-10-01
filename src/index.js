@@ -1,8 +1,9 @@
 import "./index.scss"
 import { useState, useEffect } from "react"
-import { use, useSelect } from "@wordpress/data"
+import { useSelect } from "@wordpress/data"
 import { useBlockProps } from "@wordpress/block-editor"
 import apiFetch from "@wordpress/api-fetch"
+import { __ } from '@wordpress/i18n';
 
 wp.blocks.registerBlockType("ourplugin/featured-professor", {
   title: "Professor Callout",
@@ -83,7 +84,7 @@ function EditComponent(props) {
     <div {...blockProps}>
       <div className="professor-select-container">
         <select onChange={(e) => props.setAttributes({ profId: e.target.value })}>
-          <option value="">Select a professor</option>
+          <option value="">{__("Select a professor", "featured-professor")}</option>
           {allProfs.map(prof => {
             return (
               <option value={prof.id} selected={props.attributes.profId == prof.id}>
